@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageId>SMCT.IdentityServer.EntityFramework</PackageId>
+        <TargetFramework>net8.0</TargetFramework>
+
+        <Description>EntityFramework persistence layer for SMCT IdentityServer</Description>
+        <AssemblyName>SMCT.IdentityServer.EntityFramework</AssemblyName>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\EntityFramework.Storage\SMCT.IdentityServer.EntityFramework.Storage.csproj" />
+        <ProjectReference Include="..\IdentityServer\SMCT.IdentityServer.csproj" />
+    </ItemGroup>
+</Project>

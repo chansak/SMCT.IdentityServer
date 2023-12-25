@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Description>Configuration system for SMCT IdentityServer</Description>
+        <AssemblyName>SMCT.IdentityServer.Configuration</AssemblyName>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="IdentityModel" />
+      <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Storage\SMCT.IdentityServer.Storage.csproj" />
+    </ItemGroup>
+
+</Project>

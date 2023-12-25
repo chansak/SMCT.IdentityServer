@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+
+        <PackageId>SMCT.IdentityServer.Storage</PackageId>
+        <Description>Storage interfaces and models for SMCT IdentityServer</Description>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="IdentityModel" />
+        <PackageReference Include="Microsoft.AspNetCore.DataProtection.Abstractions" />
+    </ItemGroup>
+
+</Project>
