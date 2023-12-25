@@ -20,8 +20,8 @@ namespace MvcCode.Controllers
             _httpClientFactory = httpClientFactory;
             _discoveryCache = discoveryCache;
         }
-        
-        //[AllowAnonymous]
+
+        [AllowAnonymous]
         public IActionResult Index() => View();
 
         public IActionResult Secure() => View();

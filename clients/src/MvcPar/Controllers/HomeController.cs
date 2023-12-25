@@ -15,7 +15,7 @@ namespace MvcPar.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Index() => View();
 
         public IActionResult Secure() => View();
