@@ -48,19 +48,19 @@ internal static class IdentityServerExtensions
             .AddProfileService<HostProfileService>()
             .AddCustomTokenRequestValidator<ParameterizedScopeTokenRequestValidator>()
             .AddScopeParser<ParameterizedScopeParser>()
-            .AddMutualTlsSecretValidators()
-            .AddInMemoryOidcProviders(new[]
-            {
-                new SMCT.IdentityServer.Models.OidcProvider
-                {
-                    Scheme = "dynamicprovider-idsvr",
-                    DisplayName = "IdentityServer (via Dynamic Providers)",
-                    Authority = "https://demo.duendesoftware.com",
-                    ClientId = "login",
-                    ResponseType = "id_token",
-                    Scope = "openid profile"
-                }
-            });
+            .AddMutualTlsSecretValidators();
+            //.AddInMemoryOidcProviders(new[]
+            //{
+            //    new SMCT.IdentityServer.Models.OidcProvider
+            //    {
+            //        Scheme = "dynamicprovider-idsvr",
+            //        DisplayName = "IdentityServer (via Dynamic Providers)",
+            //        Authority = "https://demo.duendesoftware.com",
+            //        ClientId = "login",
+            //        ResponseType = "id_token",
+            //        Scope = "openid profile"
+            //    }
+            //});
 
 
         builder.Services.AddDistributedMemoryCache();

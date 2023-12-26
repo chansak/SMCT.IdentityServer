@@ -49,7 +49,7 @@ internal static class HostingExtensions
         openTelemetry.WithMetrics(m => m
             .AddMeter(Telemetry.ServiceName)
             .AddMeter(Pages.Telemetry.ServiceName)
-            .AddPrometheusExporter()) ;
+            .AddPrometheusExporter());
 
         return builder.Build();
     }
@@ -71,7 +71,7 @@ internal static class HostingExtensions
         builder.Services.AddOidcStateDataFormatterCache("aad", "demoidsrv");
 
         builder.Services.AddAuthentication()
-            .AddOpenIdConnect("Google", "Google", options =>
+            .AddOpenIdConnect("ThaiID", "ThaiID", options =>
             {
                 options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
                 options.ForwardSignOut = IdentityServerConstants.DefaultCookieAuthenticationScheme;
@@ -82,46 +82,58 @@ internal static class HostingExtensions
                 options.CallbackPath = "/signin-google";
                 options.Scope.Add("email");
                 options.MapInboundClaims = false;
-            })
-            .AddOpenIdConnect("demoidsrv", "IdentityServer", options =>
-            {
-                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                options.SignOutScheme = IdentityServerConstants.SignoutScheme;
-
-                options.Authority = "https://demo.duendesoftware.com";
-                options.ClientId = "login";
-                options.ResponseType = "id_token";
-                options.SaveTokens = true;
-                options.CallbackPath = "/signin-idsrv";
-                options.SignedOutCallbackPath = "/signout-callback-idsrv";
-                options.RemoteSignOutPath = "/signout-idsrv";
-                options.MapInboundClaims = false;
-
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                };
-            })
-            .AddOpenIdConnect("aad", "Azure AD", options =>
-            {
-                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                options.SignOutScheme = IdentityServerConstants.SignoutScheme;
-
-                options.Authority = "https://login.windows.net/4ca9cb4c-5e5f-4be9-b700-c532992a3705";
-                options.ClientId = "96e3c53e-01cb-4244-b658-a42164cb67a9";
-                options.ResponseType = "id_token";
-                options.CallbackPath = "/signin-aad";
-                options.SignedOutCallbackPath = "/signout-callback-aad";
-                options.RemoteSignOutPath = "/signout-aad";
-                options.MapInboundClaims = false;
-
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                };
             });
+        //.AddOpenIdConnect("Google", "Google", options =>
+        //{
+        //    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+        //    options.ForwardSignOut = IdentityServerConstants.DefaultCookieAuthenticationScheme;
+
+        //    options.Authority = "https://accounts.google.com/";
+        //    options.ClientId = "708996912208-9m4dkjb5hscn7cjrn5u0r4tbgkbj1fko.apps.googleusercontent.com";
+
+        //    options.CallbackPath = "/signin-google";
+        //    options.Scope.Add("email");
+        //    options.MapInboundClaims = false;
+        //})
+        //.AddOpenIdConnect("demoidsrv", "IdentityServer", options =>
+        //{
+        //    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+        //    options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+
+        //    options.Authority = "https://demo.duendesoftware.com";
+        //    options.ClientId = "login";
+        //    options.ResponseType = "id_token";
+        //    options.SaveTokens = true;
+        //    options.CallbackPath = "/signin-idsrv";
+        //    options.SignedOutCallbackPath = "/signout-callback-idsrv";
+        //    options.RemoteSignOutPath = "/signout-idsrv";
+        //    options.MapInboundClaims = false;
+
+        //    options.TokenValidationParameters = new TokenValidationParameters
+        //    {
+        //        NameClaimType = "name",
+        //        RoleClaimType = "role"
+        //    };
+        //})
+        //.AddOpenIdConnect("aad", "Azure AD", options =>
+        //{
+        //    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+        //    options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+
+        //    options.Authority = "https://login.windows.net/4ca9cb4c-5e5f-4be9-b700-c532992a3705";
+        //    options.ClientId = "96e3c53e-01cb-4244-b658-a42164cb67a9";
+        //    options.ResponseType = "id_token";
+        //    options.CallbackPath = "/signin-aad";
+        //    options.SignedOutCallbackPath = "/signout-callback-aad";
+        //    options.RemoteSignOutPath = "/signout-aad";
+        //    options.MapInboundClaims = false;
+
+        //    options.TokenValidationParameters = new TokenValidationParameters
+        //    {
+        //        NameClaimType = "name",
+        //        RoleClaimType = "role"
+        //    };
+        //});
     }
 
     internal static WebApplication ConfigurePipeline(this WebApplication app)
@@ -140,7 +152,7 @@ internal static class HostingExtensions
 
         // health checks
         app.MapHealthChecks("/health");
-        
+
         // local API endpoints
         app.MapControllers()
             .RequireAuthorization(IdentityServerConstants.LocalApi.PolicyName);
